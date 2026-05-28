@@ -30,7 +30,9 @@ maos-pequenas-theme/
 ├── header.php · footer.php
 ├── functions.php          # Customizer + handlers AJAX (contato/voluntário/parceiro)
 ├── style.css · theme.json
-└── setup-wordpress.sh     # Script de instalação automática (WordPress + BD + páginas)
+├── data/articles.json     # 43 artigos do blog (jun/2020 → ago/2024)
+├── import-artigos.sh      # Script standalone para importar os artigos
+└── setup-wordpress.sh     # Script de instalação automática (WP + BD + páginas + posts)
 ```
 
 ## Tecnologia
@@ -81,8 +83,25 @@ O script `setup-wordpress.sh` baixa o WordPress PT-BR, cria o banco MariaDB, ins
 4. **Seja Voluntário** (`/seja-voluntario/`) — formulário completo + regras de visitação
 5. **Parceiros** (`/parceiros/`) — grid de logos + formulário de cadastro
 6. **Dados aos Doadores** (`/dados-aos-doadores/`) — Estatuto + Ata + Balancetes
-7. **Blog** (`/blog/`)
+7. **Blog** (`/blog/`) — 43 artigos importados de `data/articles.json` (jun/2020 → ago/2024)
 8. **Contato** (`/contato/`)
+
+## Blog — Artigos importados
+
+O conteúdo do blog vem das pastas `~/Desktop/Artigos/{ano}/{mês}/*.docx` (43 artigos no total), extraídos para `data/articles.json` em ordem cronológica e categorizados em:
+
+- **Acolhimento** (9 artigos)
+- **Adoção** (8)
+- **Como Ajudar** (8) — voluntariado, doação
+- **Desenvolvimento Infantil** (11) — brincadeiras, ansiedade, linguagens do amor
+- **Notícias** (7) — temas gerais
+
+**Re-importar manualmente:**
+```bash
+bash import-artigos.sh ~/Sites/larmaospequenas
+```
+
+O blog (`/blog/`) usa ordem DESC padrão: artigos **mais recentes no topo, mais antigos embaixo**.
 
 ## Licença
 

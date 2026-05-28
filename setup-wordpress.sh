@@ -152,23 +152,12 @@ $WP option update show_on_front "page"
 
 # 9. Criar posts de exemplo
 echo "📝 Criando conteúdo inicial..."
-$WP post create \
-  --post_type=post --post_status=publish \
-  --post_title="Como funciona o acolhimento no Lar Mãos Pequenas" \
-  --post_excerpt="Entenda como acolhemos crianças e adolescentes em situação de vulnerabilidade." \
-  --post_content="<p>Você sabe como funciona o acolhimento de uma criança? Muita gente imagina que é só oferecer um teto, comida e roupas. Mas o acolhimento vai muito além disso.</p><p>No Lar Mãos Pequenas, cada criança que chega carrega uma história. Nosso papel é oferecer um ambiente seguro, afetuoso e estruturado, onde ela possa se sentir cuidada de verdade.</p><p>Acolher é garantir escola, alimentação, saúde, apoio emocional e, principalmente, presença. É mostrar que, mesmo longe da família, ela não está sozinha.</p>" 2>/dev/null
-
-$WP post create \
-  --post_type=post --post_status=publish \
-  --post_title="20 anos do Lar Mãos Pequenas: uma história de amor" \
-  --post_excerpt="Celebramos 20 anos transformando vidas em Diadema, SP." \
-  --post_content="<p>Em 2025, o Lar Mãos Pequenas celebra 20 anos de atuação dedicados ao acolhimento de crianças e adolescentes em Diadema, São Paulo.</p><p>Ao longo dessas duas décadas, centenas de crianças passaram por nosso lar e foram devolvidas às suas famílias ou encaminhadas para adoção com amor, segurança e perspectiva de futuro.</p><p>Essa história só foi possível graças a você — doadores, voluntários e parceiros que acreditam no poder da solidariedade.</p>" 2>/dev/null
-
-$WP post create \
-  --post_type=post --post_status=publish \
-  --post_title="Por que ser voluntário transforma a sua vida também" \
-  --post_excerpt="Descubra como o voluntariado beneficia tanto as crianças quanto você." \
-  --post_content="<p>Ser voluntário é uma recompensa enorme — principalmente para as crianças. Quando você dedica seu tempo, talento e carinho ao Lar Mãos Pequenas, você não está apenas ajudando — você está se transformando também.</p><p>Quer fazer parte dessa experiência? Cadastre-se como voluntário na página 'Como Ajudar'.</p>" 2>/dev/null
+# Importa 43 artigos reais (jun/2020 → ago/2024) do arquivo data/articles.json
+# via script dedicado. Os posts antigos de exemplo foram removidos — o conteúdo
+# real do blog vem das pastas do Desktop/Artigos transformadas em JSON.
+if [ -f "$THEME_SRC/import-artigos.sh" ]; then
+  bash "$THEME_SRC/import-artigos.sh" "$SITE_DIR" || echo "⚠️  Importação de artigos falhou — rode 'bash import-artigos.sh' manualmente depois"
+fi
 
 # 10. Configurar identidade visual via customizer (dados reais do briefing)
 echo "🎨 Configurando customizer..."
