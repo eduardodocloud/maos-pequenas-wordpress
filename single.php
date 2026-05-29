@@ -4,7 +4,7 @@
   <div class="container">
     <div class="breadcrumb">
       <a href="<?= home_url(); ?>">Início</a> ›
-      <a href="<?= home_url('/blog/'); ?>">Notícias</a> ›
+      <a href="<?= home_url('/blog/'); ?>">Blog</a> ›
       <?php the_title(); ?>
     </div>
     <h1><?php the_title(); ?></h1>
@@ -14,13 +14,14 @@
 
 <section class="section">
   <div class="container" style="max-width:800px">
-    <?php if (has_post_thumbnail()) : ?>
+    <?php if (have_posts()) : while (have_posts()) : the_post();
+      // Mostra featured SÓ se o conteúdo NÃO já contém qualquer imagem (evita duplicar)
+      $has_inline_img = (bool) preg_match('/<(img|figure)\b/i', get_the_content());
+      if (has_post_thumbnail() && !$has_inline_img) : ?>
       <div style="margin-bottom:36px;border-radius:var(--radius);overflow:hidden">
         <?php the_post_thumbnail('large', ['style'=>'width:100%;height:auto']); ?>
       </div>
     <?php endif; ?>
-
-    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
       <div class="entry-content" style="color:var(--texto-med);line-height:1.9;font-size:1.05rem">
         <?php the_content(); ?>
       </div>
@@ -30,7 +31,7 @@
     <?php endwhile; endif; ?>
 
     <div style="margin-top:48px">
-      <a href="<?= home_url('/blog/'); ?>" class="btn btn-outline">← Voltar para Notícias</a>
+      <a href="<?= home_url('/blog/'); ?>" class="btn btn-outline">← Voltar para o Blog</a>
     </div>
   </div>
 </section>

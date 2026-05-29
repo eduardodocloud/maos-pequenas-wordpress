@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Dados aos Doadores
+ * Template Name: Transparência
  *
  * Lista documentos institucionais para download. Os PDFs precisam ser enviados
  * para a Biblioteca de Mídia do WordPress. Quando os anexos não existirem,
@@ -95,9 +95,9 @@ function mp_find_doc_url($slug) {
 
 <section class="page-header section">
   <div class="container text-center">
-    <span class="section-label">Transparência</span>
-    <h1 class="section-title">Dados aos Doadores</h1>
-    <p class="section-desc" style="max-width:780px;margin:16px auto">Transparência com nossos parceiros e doadores em primeiro lugar. Acesse e baixe nossos documentos institucionais e prestações de contas.</p>
+    <div class="breadcrumb"><a href="<?= esc_url(home_url('/')); ?>">Início</a> › Transparência</div>
+    <h1>Transparência</h1>
+    <p>Transparência com nossos parceiros e doadores em primeiro lugar. Acesse e baixe nossos documentos institucionais e prestações de contas.</p>
   </div>
 </section>
 

@@ -33,7 +33,7 @@
         <a href="<?= home_url('/doacoes/'); ?>">Doações</a>
         <a href="<?= home_url('/seja-voluntario/'); ?>">Seja Voluntário</a>
         <a href="<?= home_url('/parceiros/'); ?>">Parceiros</a>
-        <a href="<?= home_url('/dados-aos-doadores/'); ?>">Dados aos Doadores</a>
+        <a href="<?= home_url('/transparencia/'); ?>">Transparência</a>
         <a href="<?= home_url('/blog/'); ?>">Blog</a>
         <a href="<?= home_url('/doacoes/'); ?>" class="nav-cta">❤️ Seja um Doador</a>
       </nav>

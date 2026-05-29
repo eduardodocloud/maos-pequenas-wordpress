@@ -135,8 +135,8 @@ PARC_ID=$($WP post create --post_type=page --post_status=publish \
 $WP post meta update $PARC_ID _wp_page_template "page-parceiros.php"
 
 DADOS_ID=$($WP post create --post_type=page --post_status=publish \
-  --post_title="Dados aos Doadores" --post_name="dados-aos-doadores" --post_content="" --porcelain)
-$WP post meta update $DADOS_ID _wp_page_template "page-dados-aos-doadores.php"
+  --post_title="Transparência" --post_name="transparencia" --post_content="" --porcelain)
+$WP post meta update $DADOS_ID _wp_page_template "page-transparencia.php"
 
 BLOG_ID=$($WP post create --post_type=page --post_status=publish \
   --post_title="Blog" --post_name="blog" --post_content="" --porcelain)

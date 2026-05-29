@@ -24,7 +24,7 @@ maos-pequenas-theme/
 ├── page-doacoes.php       # 3 caminhos: Dinheiro/Mantenedor/Suprimentos
 ├── page-seja-voluntario.php
 ├── page-parceiros.php
-├── page-dados-aos-doadores.php  # Transparência (PDFs)
+├── page-transparencia.php  # Transparência (PDFs)
 ├── page-contato.php
 ├── page-como-acolhemos.php
 ├── header.php · footer.php
@@ -82,7 +82,7 @@ O script `setup-wordpress.sh` baixa o WordPress PT-BR, cria o banco MariaDB, ins
 3. **Doações** (`/doacoes/`) — com âncoras `#dinheiro`, `#mantenedor`, `#suprimentos`
 4. **Seja Voluntário** (`/seja-voluntario/`) — formulário completo + regras de visitação
 5. **Parceiros** (`/parceiros/`) — grid de logos + formulário de cadastro
-6. **Dados aos Doadores** (`/dados-aos-doadores/`) — Estatuto + Ata + Balancetes
+6. **Transparência** (`/transparencia/`) — Estatuto + Ata + Balancetes
 7. **Blog** (`/blog/`) — 43 artigos importados de `data/articles.json` (jun/2020 → ago/2024)
 8. **Contato** (`/contato/`)
 

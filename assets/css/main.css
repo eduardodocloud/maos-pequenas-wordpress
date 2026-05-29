@@ -158,7 +158,21 @@
   border-radius: 0 8px 8px 0;
   font-style: italic;
 }
-.entry-content img { border-radius: var(--radius); margin: 16px 0; }
+.entry-content img,
+.entry-content figure img { border-radius: var(--radius); margin: 0; width: 100%; height: auto; }
+.entry-content figure {
+  margin: 32px 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 24px rgba(0,96,152,0.10);
+}
+.entry-content figcaption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--texto-med);
+  padding: 10px 16px;
+  background: var(--cinza-claro);
+}
 
 /* ===========================
    HERO SLIDER ROTATIVO

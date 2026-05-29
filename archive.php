@@ -2,7 +2,7 @@
 
 <div class="page-hero">
   <div class="container">
-    <div class="breadcrumb"><a href="<?= home_url(); ?>">Início</a> › Notícias</div>
+    <div class="breadcrumb"><a href="<?= home_url(); ?>">Início</a> › Blog</div>
     <h1><?php the_archive_title(); ?></h1>
     <?php if (get_the_archive_description()) : ?>
       <p><?php the_archive_description(); ?></p>
