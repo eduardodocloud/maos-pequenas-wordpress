@@ -559,14 +559,16 @@ ul { list-style: none; }
   align-items: flex-start;
   gap: 12px;
 }
-/* Cabeçalhos dos cards "Apoie" — TODOS dentro da paleta da marca (azul + amarelo) */
-.help-card:nth-child(1) .help-card-header { background: linear-gradient(135deg, var(--azul-escuro), var(--azul)); }
-.help-card:nth-child(2) .help-card-header { background: linear-gradient(135deg, var(--azul), var(--azul-claro)); }
-.help-card:nth-child(3) .help-card-header {
-  background: linear-gradient(135deg, var(--amarelo-d), var(--amarelo));
-}
-.help-card:nth-child(3) .help-card-header h3 { color: var(--texto); }   /* contraste sobre amarelo */
-.help-card:nth-child(3) .help-card-icon     { color: var(--texto); }
+/* Cabeçalhos dos cards "Apoie/Doações" — paleta da marca rotativa a cada 3 cards
+   1º, 4º, 7º... → azul-escuro → azul
+   2º, 5º, 8º... → azul → azul-claro
+   3º, 6º, 9º... → amarelo (com texto escuro pro contraste)
+*/
+.help-card:nth-child(3n+1) .help-card-header { background: linear-gradient(135deg, var(--azul-escuro), var(--azul)); }
+.help-card:nth-child(3n+2) .help-card-header { background: linear-gradient(135deg, var(--azul), var(--azul-claro)); }
+.help-card:nth-child(3n+3) .help-card-header { background: linear-gradient(135deg, var(--amarelo-d), var(--amarelo)); }
+.help-card:nth-child(3n+3) .help-card-header h3 { color: var(--texto); }
+.help-card:nth-child(3n+3) .help-card-icon     { color: var(--texto); }
 .help-card-icon { font-size: 2.5rem; }
 .help-card-icon:empty { display: none; }
 .value-icon:empty { display: none; }
