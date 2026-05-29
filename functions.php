@@ -3,6 +3,9 @@
  * Funções do tema Mãos Pequenas
  */
 
+// Hardening de segurança + perf (produção)
+require_once get_theme_file_path('inc/security.php');
+
 // Configurações básicas do tema
 function mp_setup() {
     add_theme_support('title-tag');

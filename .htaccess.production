@@ -1,0 +1,82 @@
+# ============================================================
+# .htaccess de produção — Lar Mãos Pequenas
+# Colocar na RAIZ do WordPress (ao lado de wp-config.php)
+# ============================================================
+
+# --- WordPress padrão (mantém URLs amigáveis) ---
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# --- Força HTTPS (depois do certificado SSL ativo) ---
+<IfModule mod_rewrite.c>
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# --- Força www OU sem-www (escolha um — descomente um bloco)  ---
+# Sem www (recomendado para org.br):
+# RewriteCond %{HTTP_HOST} ^www\.larmaospequenas\.org\.br$ [NC]
+# RewriteRule ^(.*)$ https://larmaospequenas.org.br/$1 [L,R=301]
+
+# --- Bloqueia acesso a arquivos sensíveis ---
+<FilesMatch "^(wp-config\.php|\.htaccess|\.htpasswd|readme\.html|license\.txt|wp-config-sample\.php)$">
+  Require all denied
+</FilesMatch>
+
+# --- Bloqueia listagem de diretórios ---
+Options -Indexes
+
+# --- Bloqueia execução PHP em uploads (anti-shell upload) ---
+<Directory "wp-content/uploads">
+  <FilesMatch "\.(php|phtml|php3|php4|php5|pl|py|jsp|asp|sh|cgi)$">
+    Require all denied
+  </FilesMatch>
+</Directory>
+
+# --- Bloqueia XML-RPC (ataques de força bruta) ---
+<Files xmlrpc.php>
+  Require all denied
+</Files>
+
+# --- Bloqueia ?author=N (enumeração de usuários) ---
+<IfModule mod_rewrite.c>
+RewriteCond %{QUERY_STRING} ^author=\d+$ [NC]
+RewriteRule ^ /? [L,R=301]
+</IfModule>
+
+# --- Cache de assets estáticos (perf) ---
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/png  "access plus 1 year"
+ExpiresByType image/webp "access plus 1 year"
+ExpiresByType image/svg+xml "access plus 1 year"
+ExpiresByType text/css   "access plus 1 month"
+ExpiresByType text/javascript "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
+ExpiresByType application/font-woff2 "access plus 1 year"
+ExpiresByType font/woff2 "access plus 1 year"
+ExpiresDefault "access plus 1 day"
+</IfModule>
+
+# --- Compressão Gzip ---
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json text/xml application/xml image/svg+xml
+</IfModule>
+
+# --- Cabeçalhos de segurança extras (camada Apache) ---
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+# HSTS — habilitar SÓ depois de confirmar que HTTPS funciona em www e sem-www
+# Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>

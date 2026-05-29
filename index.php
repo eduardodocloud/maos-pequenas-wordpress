@@ -1,8 +1,17 @@
 <?php get_header(); ?>
 
+<?php
+// Título da página: se for page_for_posts, pega o título da page; senão usa "Blog"
+$blog_page_id = (int) get_option('page_for_posts');
+$blog_title   = $blog_page_id ? get_the_title($blog_page_id) : 'Blog';
+$blog_desc    = $blog_page_id ? get_post_field('post_excerpt', $blog_page_id) : '';
+?>
 <div class="page-hero">
   <div class="container text-center">
-    <h1><?php wp_title(''); ?></h1>
+    <div class="breadcrumb"><a href="<?= esc_url(home_url('/')); ?>">Início</a> › <?= esc_html($blog_title); ?></div>
+    <h1><?= esc_html($blog_title); ?></h1>
+    <?php if ($blog_desc) : ?><p><?= esc_html($blog_desc); ?></p>
+    <?php else : ?><p>Acompanhe nossas histórias, dicas e novidades do Lar Mãos Pequenas.</p><?php endif; ?>
   </div>
 </div>
 
