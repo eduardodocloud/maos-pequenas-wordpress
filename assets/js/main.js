@@ -205,4 +205,35 @@ document.addEventListener('DOMContentLoaded', function () {
   bindAjaxForm('voluntarioForm', 'mp_voluntario', '✓ Enviar Inscrição');
   bindAjaxForm('parceiroForm',   'mp_parceiro',   '✓ Enviar Proposta');
 
+  /* --- Fade-in suave APENAS para elementos abaixo da fold inicial --- */
+  if ('IntersectionObserver' in window) {
+    const fadeTargets = document.querySelectorAll(
+      '.section-title, .section-desc, .section-label, ' +
+      '.how-card, .help-card, .blog-card, .doc-card, .parceiro-logo, ' +
+      '.about-home-content > *, .impact-item'
+    );
+    const viewportH = window.innerHeight;
+    fadeTargets.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      // Se já visível no carregamento → não anima
+      if (rect.top < viewportH - 50) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(14px)';
+      el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+      el.dataset.fade = '1';
+    });
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting && e.target.dataset.fade) {
+          setTimeout(() => {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateY(0)';
+          }, (i % 3) * 70);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    fadeTargets.forEach(el => { if (el.dataset.fade) obs.observe(el); });
+  }
+
 });

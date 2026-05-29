@@ -297,16 +297,41 @@
 /* ===========================
    FORMULÁRIO DE VOLUNTÁRIO/PARCEIRO
 =========================== */
+/* Forms — design system unificado */
+.contact-form {
+  background: var(--branco);
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: 0 12px 40px rgba(0,96,152,0.10);
+  border: 1px solid rgba(0,96,152,0.06);
+}
+.contact-form > h3 {
+  font-family: var(--font-head);
+  color: var(--azul);
+  margin: 0 0 8px;
+  font-size: 1.35rem;
+}
+.contact-form h4 {
+  margin-top: 22px;
+  font-size: 0.78rem !important;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: var(--azul);
+  font-weight: 800;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--azul-pale);
+  margin-bottom: 14px;
+}
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 14px 16px;
 }
 .form-grid .field-full { grid-column: 1 / -1; }
 .form-field label {
   display: block;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin-bottom: 6px;
   color: var(--texto);
 }
@@ -314,14 +339,22 @@
 .form-field select,
 .form-field textarea {
   width: 100%;
-  padding: 11px 14px;
-  border: 1px solid #D1D5DB;
-  border-radius: 8px;
+  height: 44px;
+  padding: 10px 14px;
+  border: 1.5px solid #E0E5EB;
+  border-radius: 10px;
   font-size: 0.95rem;
   font-family: inherit;
+  color: var(--texto);
   background: var(--branco);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
+.form-field textarea { height: auto; min-height: 100px; resize: vertical; }
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: #9CA3AF; }
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover { border-color: #C6D2DD; }
 .form-field input:focus,
 .form-field select:focus,
 .form-field textarea:focus {
@@ -332,25 +365,35 @@
 .form-checkbox-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 .form-checkbox-group label {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   background: var(--cinza-claro);
+  border: 1px solid transparent;
   padding: 8px 14px;
   border-radius: 50px;
   cursor: pointer;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
+  margin: 0;
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s;
+}
+.form-checkbox-group label:hover { background: var(--azul-pale); border-color: rgba(0,96,152,0.2); }
+.form-checkbox-group input[type="checkbox"] {
+  width: 16px; height: 16px;
+  accent-color: var(--azul);
   margin: 0;
 }
 .form-feedback {
   display: none;
   padding: 14px 16px;
-  border-radius: 8px;
-  margin-top: 14px;
+  border-radius: 10px;
+  margin-top: 16px;
   font-weight: 600;
+  font-size: 0.92rem;
 }
 
 /* ===========================
