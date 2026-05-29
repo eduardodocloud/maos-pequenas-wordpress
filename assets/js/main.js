@@ -205,22 +205,37 @@ document.addEventListener('DOMContentLoaded', function () {
  bindAjaxForm('voluntarioForm', 'mp_voluntario', 'Enviar Inscrição');
  bindAjaxForm('parceiroForm', 'mp_parceiro', 'Enviar Proposta');
 
-  /* --- Modal de visualização de documento (PDF view-only) --- */
+  /* --- Modal de visualização de documento (view-only) ---
+     Usa PDF.js (Mozilla) hospedado localmente em /assets/pdfjs/web/viewer.html.
+     PDF.js renderiza o PDF em canvas — não depende do plugin nativo do browser
+     que estava sendo bloqueado pelo Chrome. */
   const docModal = document.getElementById('docModal');
   if (docModal) {
-    const docFrame = document.getElementById('docFrame');
-    const docTitle = document.getElementById('docModalTitle');
+    const docBody    = document.getElementById('docModalBody');
+    const docTitle   = document.getElementById('docModalTitle');
+    const pdfJsViewer = (window.mpData && window.mpData.pdfjsViewer) || '/wp-content/themes/maos-pequenas/assets/pdfjs/web/viewer.html';
 
     function openDoc(url, title) {
-      const viewerUrl = url + '#toolbar=0&navpanes=0&scrollbar=1&statusbar=0&messages=0';
-      docFrame.src = viewerUrl;
       docTitle.textContent = title || 'Documento';
+      docBody.innerHTML = '<div class="doc-loading">Carregando documento…</div>';
+
+      // Aponta o viewer do PDF.js para o nosso endpoint /doc/{slug}/
+      // Parâmetros do hash escondem botões de download/print/open
+      const viewerUrl = pdfJsViewer
+        + '?file=' + encodeURIComponent(url)
+        + '#zoom=page-width';
+
+      docBody.innerHTML =
+        '<iframe src="' + viewerUrl + '" ' +
+        'title="' + (title||'Documento') + '" ' +
+        'allowfullscreen></iframe>';
+
       docModal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
     function closeDoc() {
       docModal.setAttribute('aria-hidden', 'true');
-      docFrame.src = 'about:blank';
+      docBody.innerHTML = '';
       document.body.style.overflow = '';
     }
     document.querySelectorAll('button.doc-card').forEach(function (btn) {

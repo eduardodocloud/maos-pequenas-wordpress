@@ -42,8 +42,9 @@ function mp_enqueue_assets() {
     // JS
     wp_enqueue_script('mp-main', get_theme_file_uri('assets/js/main.js'), [], '1.0.0', true);
     wp_localize_script('mp-main', 'mpData', [
-        'ajaxUrl' => admin_url('admin-ajax.php'),
-        'nonce'   => wp_create_nonce('mp_nonce'),
+        'ajaxUrl'     => admin_url('admin-ajax.php'),
+        'nonce'       => wp_create_nonce('mp_nonce'),
+        'pdfjsViewer' => get_theme_file_uri('assets/pdfjs/web/viewer.html'),
     ]);
 }
 add_action('wp_enqueue_scripts', 'mp_enqueue_assets');

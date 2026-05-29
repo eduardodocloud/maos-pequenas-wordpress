@@ -522,12 +522,30 @@ button.doc-card[disabled] { opacity: 0.55; cursor: not-allowed; }
   overflow: hidden;
   position: relative;
 }
-.doc-modal-body iframe {
+.doc-modal-body iframe,
+.doc-modal-body object {
   width: 100%;
   height: 100%;
   border: 0;
   display: block;
   background: #525659;
+}
+.doc-loading {
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 0.95rem;
+}
+.doc-fallback {
+  color: var(--branco);
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.95rem;
+}
+.doc-fallback a {
+  color: var(--amarelo);
+  text-decoration: underline;
+  font-weight: 600;
 }
 .doc-modal-footer {
   padding: 12px 22px;

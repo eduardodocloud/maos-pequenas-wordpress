@@ -176,12 +176,9 @@ function mp_find_doc_url($slug) {
       <h3 id="docModalTitle">Documento</h3>
       <button type="button" class="doc-modal-close" data-doc-close aria-label="Fechar">×</button>
     </header>
-    <div class="doc-modal-body">
-      <iframe id="docFrame"
-              src="about:blank"
-              title="Visualizador de documento"
-              referrerpolicy="same-origin"
-              sandbox="allow-same-origin allow-scripts"></iframe>
+    <div class="doc-modal-body" id="docModalBody">
+      <!-- Container vazio; o JS injeta <object> ou <iframe> dinamicamente
+           conforme o tipo de arquivo (PDF usa <object>, demais usam <iframe>) -->
     </div>
     <footer class="doc-modal-footer">
       <small>Documento de consulta pública. Para solicitar cópia formal, entre em contato com <a href="mailto:<?= esc_attr(mp_opt('mp_email','larmaospequenas@gmail.com')); ?>"><?= esc_html(mp_opt('mp_email','larmaospequenas@gmail.com')); ?></a>.</small>
