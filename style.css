@@ -689,8 +689,28 @@ ul { list-style: none; }
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: var(--transition);
+  position: relative;            /* âncora para o stretched link do título */
+  cursor: pointer;
 }
 .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.blog-card:hover h3 a { color: var(--azul); }
+
+/* Stretched link: o <a> do <h3> cobre o card inteiro
+   sem precisar aninhar <a> e sem JS. Mantém HTML semântico/acessível. */
+.blog-card h3 a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+.blog-card h3 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+/* A categoria ainda pode receber clique independente (link próprio) */
+.blog-card .blog-cat,
+.blog-card .blog-meta { position: relative; z-index: 2; }
 .blog-card-image {
   height: 200px;
   background: var(--azul-pale);
