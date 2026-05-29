@@ -420,6 +420,130 @@
 }
 
 /* ===========================
+   DOC CARDS (Transparência) — botões em vez de <a>
+=========================== */
+button.doc-card {
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid var(--cinza-claro);
+}
+button.doc-card.is-disabled,
+button.doc-card[disabled] { opacity: 0.55; cursor: not-allowed; }
+.doc-card-action {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--azul);
+}
+.doc-card-warn {
+  color: #9A6B00;
+  font-size: 0.78rem;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ===========================
+   MODAL DE VISUALIZAÇÃO DE DOCUMENTO (PDF view-only)
+=========================== */
+.doc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.doc-modal[aria-hidden="false"] {
+  display: flex;
+  animation: docFadeIn 0.22s ease;
+}
+@keyframes docFadeIn { from { opacity: 0; } to { opacity: 1; } }
+.doc-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,30,60,0.78);
+  backdrop-filter: blur(4px);
+}
+.doc-modal-content {
+  position: relative;
+  background: var(--branco);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 980px;
+  height: calc(100vh - 48px);
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 72px rgba(0,0,0,0.4);
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.doc-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--cinza-claro);
+  background: var(--azul-pale);
+}
+.doc-modal-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--azul-escuro);
+  font-family: var(--font-head);
+}
+.doc-modal-close {
+  background: var(--branco);
+  border: 1px solid var(--cinza-claro);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--texto);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.doc-modal-close:hover {
+  background: var(--azul);
+  color: var(--branco);
+  border-color: var(--azul);
+}
+.doc-modal-body {
+  flex: 1;
+  background: #525659;     /* fundo escuro tipo viewer de PDF */
+  overflow: hidden;
+  position: relative;
+}
+.doc-modal-body iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  background: #525659;
+}
+.doc-modal-footer {
+  padding: 12px 22px;
+  background: var(--cinza-claro);
+  font-size: 0.78rem;
+  color: var(--texto-med);
+  border-top: 1px solid #E5E7EB;
+}
+.doc-modal-footer a { color: var(--azul); }
+
+@media (max-width: 640px) {
+  .doc-modal { padding: 0; }
+  .doc-modal-content { border-radius: 0; height: 100vh; max-height: none; }
+}
+
+/* ===========================
    FORMULÁRIO DE VOLUNTÁRIO/PARCEIRO
 =========================== */
 /* Forms — design system unificado */

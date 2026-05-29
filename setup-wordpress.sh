@@ -163,37 +163,14 @@ fi
 echo "🎨 Configurando customizer..."
 $WP option update "theme_mods_maos-pequenas" '{"mp_whatsapp":"(11) 4047-2289","mp_tel_1":"(11) 4047-2167","mp_tel_2":"(11) 4047-2289","mp_fax":"(11) 4049-6305","mp_tel_3":"(11) 4059-6973","mp_email":"larmaospequenas@gmail.com","mp_instagram":"https://instagram.com/larmaospequenas","mp_cnpj":"07.679.226/0001-00","mp_util_publica":"2877/09","mp_endereco":"Estrada Nova Ipê, 440 — Condomínio Praia Vermelha — Diadema/SP","mp_horario":"Segunda à sexta-feira, das 9h às 17h","mp_doare_url":"https://doare.org/","mp_hero_titulo_1":"Um pequeno gesto pode fazer uma <span>grande diferença<\/span>","mp_hero_texto_1":"Faça sua doação e ajude a transformar a vida de crianças e adolescentes acolhidos no Lar Mãos Pequenas.","mp_hero_titulo_2":"Há 20 anos levando esperança para <span>crianças e adolescentes<\/span>","mp_hero_texto_2":"O Lar Assistencial Mãos Pequenas é um espaço de acolhimento, afeto e dignidade em Diadema/SP."}' 2>/dev/null || true
 
-# 10.1. Upload dos PDFs de transparência (Estatuto + Balancetes)
-DOCS_DIR="$HOME/Desktop/site"
-if [ -d "$DOCS_DIR" ]; then
-  echo "📎 Importando documentos de transparência..."
-
-  # Mapa: caminho-do-arquivo|slug-do-anexo|título
-  declare -a DOC_MAP=(
-    "$DOCS_DIR/Estatuto Atual_Novo Endereço.pdf|estatuto-social|Estatuto Social"
-    "$DOCS_DIR/Ata Atual_Diretoria (2).pdf|ata-diretoria|Ata da Diretoria"
-    "$DOCS_DIR/Balancetes/Mãos Pequenas - Demonstrações Contábeis Completas (BP-DR-DMPL-FC-NE) 2018.pdf|balancete-2018|Balancete 2018"
-    "$DOCS_DIR/Balancetes/Mãos Pequenas - Peças Contábeis - BP-DRE-DMPL-DFI-NE - 2017.pdf|balancete-2017|Balancete 2017"
-    "$DOCS_DIR/Balancetes/037 - Lar Assistencial Mãos Pequenas - Demonstrações Contábeis (Notas Explicativas) 2016.pdf|balancete-2016|Balancete 2016"
-    "$DOCS_DIR/Balancetes/039 - Demonstrações Contabeis Completas 2015.doc|balancete-2015|Balancete 2015"
-    "$DOCS_DIR/Balancetes/039 - Demonstrações Contábeis (BP-DR-DMPL-FC) 2014-2013.xlsx|balancete-2014|Balancete 2014-2013"
-    "$DOCS_DIR/Balancetes/039 -Lar Mão Pequenas - Demonstracoes contabeis 2013 - 2012.pdf|balancete-2013|Balancete 2013-2012"
-    "$DOCS_DIR/Balancetes/Lar Ass Mãos Pequenas - NOTAS EXPLICATIVAS ÀS DEMONSTRAÇÕES CONTÁBEIS EM 31-12-2012.doc|balancete-2012|Balancete 2012"
-    "$DOCS_DIR/Balancetes/Lar Mãos Pequenas - Demonstrações Financeiras 2012 Comparativo 2011.xlsx|balancete-2011|Balancete 2012-2011"
-  )
-
-  for entry in "${DOC_MAP[@]}"; do
-    IFS='|' read -r file slug title <<< "$entry"
-    if [ -f "$file" ]; then
-      $WP media import "$file" --title="$title" --porcelain 2>/dev/null | head -1 | while read aid; do
-        if [ -n "$aid" ]; then
-          $WP post update "$aid" --post_name="$slug" 2>/dev/null || true
-        fi
-      done
-    fi
-  done
-  echo "✅ Documentos importados"
+# 10.1. Upload dos PDFs de transparência via script PHP dedicado
+# (versão Bash + WP-CLI tinha bug com slug — PHP usa wp_insert_attachment direto)
+if [ -f "$THEME_SRC/import-docs.php" ]; then
+  php "$THEME_SRC/import-docs.php" || echo "⚠️  Importação de docs falhou — rode 'php import-docs.php' manualmente"
 fi
+
+# Flush rewrite rules pra registrar endpoint /doc/{slug}/
+$WP rewrite flush 2>/dev/null || true
 
 # 11. Instalar logo SVG como custom logo
 LOGO_PATH="$THEME_DEST/assets/images/logo.svg"

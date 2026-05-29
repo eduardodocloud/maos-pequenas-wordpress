@@ -202,8 +202,46 @@ document.addEventListener('DOMContentLoaded', function () {
  });
  });
  }
- bindAjaxForm('voluntarioForm', 'mp_voluntario', ' Enviar Inscrição');
- bindAjaxForm('parceiroForm', 'mp_parceiro', ' Enviar Proposta');
+ bindAjaxForm('voluntarioForm', 'mp_voluntario', 'Enviar Inscrição');
+ bindAjaxForm('parceiroForm', 'mp_parceiro', 'Enviar Proposta');
+
+  /* --- Modal de visualização de documento (PDF view-only) --- */
+  const docModal = document.getElementById('docModal');
+  if (docModal) {
+    const docFrame = document.getElementById('docFrame');
+    const docTitle = document.getElementById('docModalTitle');
+
+    function openDoc(url, title) {
+      const viewerUrl = url + '#toolbar=0&navpanes=0&scrollbar=1&statusbar=0&messages=0';
+      docFrame.src = viewerUrl;
+      docTitle.textContent = title || 'Documento';
+      docModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDoc() {
+      docModal.setAttribute('aria-hidden', 'true');
+      docFrame.src = 'about:blank';
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('button.doc-card').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const url = btn.dataset.docUrl;
+        const ttl = btn.dataset.docTitle;
+        if (url) openDoc(url, ttl);
+      });
+    });
+    docModal.querySelectorAll('[data-doc-close]').forEach(function (el) {
+      el.addEventListener('click', closeDoc);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && docModal.getAttribute('aria-hidden') === 'false') closeDoc();
+    });
+    docModal.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && ['s','p','S','P'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+  }
 
  /* --- Fade-in suave APENAS para elementos abaixo da fold inicial --- */
  if ('IntersectionObserver' in window) {

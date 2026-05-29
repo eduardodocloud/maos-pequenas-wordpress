@@ -104,6 +104,69 @@ function mp_customizer($wp_customize) {
     }
 }
 
+// =====================================================
+// Endpoint de visualização de PDF (Transparência)
+// Serve PDFs INLINE (não download) com headers anti-cache,
+// referrer protection e Content-Disposition: inline.
+// Não impede download técnico 100% (impossível em web), mas
+// remove o link direto público e desencoraja salvamento.
+// =====================================================
+add_action('init', function () {
+    add_rewrite_rule('^doc/([^/]+)/?$', 'index.php?mp_doc=$matches[1]', 'top');
+    add_rewrite_tag('%mp_doc%', '([^&]+)');
+});
+
+add_action('template_redirect', function () {
+    $slug = get_query_var('mp_doc');
+    if (!$slug) return;
+
+    // Busca anexo pelo slug
+    $attach = get_page_by_path($slug, OBJECT, 'attachment');
+    if (!$attach) {
+        status_header(404);
+        nocache_headers();
+        echo 'Documento não encontrado';
+        exit;
+    }
+
+    $file = get_attached_file($attach->ID);
+    if (!$file || !file_exists($file)) {
+        status_header(404);
+        echo 'Arquivo não disponível';
+        exit;
+    }
+
+    // Referrer protection: só serve se a requisição vier do mesmo site
+    $referer = wp_get_referer();
+    $host    = wp_parse_url(home_url(), PHP_URL_HOST);
+    if ($referer && wp_parse_url($referer, PHP_URL_HOST) !== $host) {
+        status_header(403);
+        echo 'Acesso restrito';
+        exit;
+    }
+
+    $mime = get_post_mime_type($attach->ID) ?: 'application/pdf';
+    $name = basename($file);
+
+    // Cabeçalhos: inline (não download), sem cache, sem indexação
+    header('Content-Type: ' . $mime);
+    header('Content-Disposition: inline; filename="' . $name . '"');
+    header('Content-Length: ' . filesize($file));
+    header('Cache-Control: private, no-store, no-cache, must-revalidate');
+    header('Pragma: no-cache');
+    header('X-Robots-Tag: noindex, nofollow, noarchive');
+    header('X-Frame-Options: SAMEORIGIN');     // só carrega no nosso próprio iframe
+    header('Content-Security-Policy: frame-ancestors \'self\'');
+
+    readfile($file);
+    exit;
+});
+
+// Flush de rewrite uma vez ao trocar tema (não roda em cada request)
+add_action('after_switch_theme', function () {
+    flush_rewrite_rules();
+});
+
 // Handler do formulário de voluntário
 function mp_handle_voluntario() {
     check_ajax_referer('mp_nonce', 'nonce');
