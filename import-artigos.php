@@ -114,45 +114,22 @@ foreach ($articles as $i => $a) {
         wp_set_post_terms($post_id, [$cats_map[$a['category']]], 'category');
     }
 
-    // Importa imagens, define featured e substitui marcadores no content
-    if (!empty($a['images'])) {
-        $content = $a['content'];
-        $first_attach_id = null;
-        foreach ($a['images'] as $img_name) {
-            $img_path = $img_source_dir . '/' . $img_name;
-            if (!file_exists($img_path)) continue;
-
-            $attach_id = mp_import_attachment($img_path, $post_id, $a['title']);
-            if (!$attach_id) continue;
-
-            if (!$first_attach_id) $first_attach_id = $attach_id;
-
-            $url = wp_get_attachment_url($attach_id);
-            $img_html = '<figure class="wp-block-image size-large"><img src="' .
-                        esc_url($url) . '" alt="' . esc_attr($a['title']) .
-                        '" loading="lazy" /></figure>';
-
-            // Substitui o primeiro marcador correspondente
-            $content = preg_replace(
-                '/<!--ARTICLE_IMG:' . preg_quote($img_name, '/') . '-->/',
-                $img_html, $content, 1
-            );
-        }
-
-        // Atualiza content com imagens inline
+    // Importa primeira imagem como featured; REMOVE TODOS os marcadores do content
+    // (estrutura padrão: Título → Imagem → Texto)
+    $content = preg_replace('/<!--ARTICLE_IMG:[^>]+-->/', '', $a['content']);
+    if ($content !== $a['content']) {
         wp_update_post(['ID' => $post_id, 'post_content' => $content]);
+    }
 
-        // Featured image = primeira imagem
-        if ($first_attach_id) {
-            set_post_thumbnail($post_id, $first_attach_id);
-        }
-
-        echo "         📷 " . count($a['images']) . " imagem(ns) importada(s)\n";
-    } else {
-        // Remove qualquer marcador residual
-        $clean = preg_replace('/<!--ARTICLE_IMG:[^>]+-->/', '', $a['content']);
-        if ($clean !== $a['content']) {
-            wp_update_post(['ID' => $post_id, 'post_content' => $clean]);
+    if (!empty($a['images'])) {
+        // Importa só a PRIMEIRA imagem como featured (evita poluição)
+        $img_path = $img_source_dir . '/' . $a['images'][0];
+        if (file_exists($img_path)) {
+            $attach_id = mp_import_attachment($img_path, $post_id, $a['title']);
+            if ($attach_id) {
+                set_post_thumbnail($post_id, $attach_id);
+                echo "         📷 imagem definida como featured\n";
+            }
         }
     }
 
