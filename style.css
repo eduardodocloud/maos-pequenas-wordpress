@@ -530,8 +530,10 @@ ul { list-style: none; }
   font-size: 2.8rem;
   margin: 12px 0 18px;
 }
+.how-icon:empty { display: none; }   /* esconde se vazio (após remoção de emoji) */
 .how-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
 .how-card p  { color: var(--texto-med); font-size: 0.95rem; }
+.how-card h3:first-child { margin-top: 4px; }   /* sem ícone, traz title pra cima */
 
 /* ===========================
    COMO AJUDAR
@@ -566,6 +568,12 @@ ul { list-style: none; }
 .help-card:nth-child(3) .help-card-header h3 { color: var(--texto); }   /* contraste sobre amarelo */
 .help-card:nth-child(3) .help-card-icon     { color: var(--texto); }
 .help-card-icon { font-size: 2.5rem; }
+.help-card-icon:empty { display: none; }
+.value-icon:empty { display: none; }
+.contact-icon:empty { display: none; }
+.donation-highlight-icon:empty { display: none; }
+.doc-card-icon:empty { display: none; }
+.footer-contact-icon:empty { display: none; }
 .help-card-header h3 { color: var(--branco); font-size: 1.3rem; }
 .help-card-body { padding: 24px 28px; }
 .help-card-body p { color: var(--texto-med); margin-bottom: 20px; font-size: 0.95rem; }
