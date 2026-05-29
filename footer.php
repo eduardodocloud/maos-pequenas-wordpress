@@ -21,15 +21,10 @@ $whats_clean = preg_replace('/\D/', '', $whats);
 
       <!-- Coluna 1: Marca -->
       <div class="footer-brand">
-        <a href="<?= home_url('/'); ?>" class="site-logo">
-          <?php if (has_custom_logo()) :
-            the_custom_logo();
-          else : ?>
-            <div class="site-logo-text">
-              <strong>Mãos Pequenas</strong>
-              <span>Lar Assistencial</span>
-            </div>
-          <?php endif; ?>
+        <a href="<?= home_url('/'); ?>" class="site-logo site-logo-footer">
+          <img src="<?= esc_url(get_theme_file_uri('assets/images/logo-vertical-web.jpg')); ?>"
+               alt="Lar Assistencial Mãos Pequenas"
+               width="180" height="100">
         </a>
         <p>Acolhemos crianças e adolescentes em situação de vulnerabilidade com amor, cuidado e comprometimento há mais de 20 anos.</p>
         <div class="footer-social">

@@ -4,11 +4,13 @@
   "settings": {
     "color": {
       "palette": [
-        { "slug": "azul",        "color": "#1B6FAF", "name": "Azul Principal" },
-        { "slug": "azul-claro",  "color": "#4A9FD4", "name": "Azul Claro" },
-        { "slug": "azul-pale",   "color": "#EBF5FB", "name": "Azul Suave" },
-        { "slug": "amarelo",     "color": "#F5C518", "name": "Amarelo" },
-        { "slug": "amarelo-d",   "color": "#E0A800", "name": "Amarelo Escuro" },
+        { "slug": "azul",        "color": "#006098", "name": "Azul Mãos Pequenas" },
+        { "slug": "azul-escuro", "color": "#004E7C", "name": "Azul Escuro" },
+        { "slug": "azul-claro",  "color": "#2F8FCB", "name": "Azul Claro" },
+        { "slug": "azul-pale",   "color": "#E6F1F8", "name": "Azul Suave" },
+        { "slug": "amarelo",     "color": "#F8F010", "name": "Amarelo Mãos Pequenas" },
+        { "slug": "amarelo-d",   "color": "#D8D000", "name": "Amarelo Escuro" },
+        { "slug": "amarelo-pale","color": "#FFFCE0", "name": "Amarelo Suave" },
         { "slug": "branco",      "color": "#FFFFFF", "name": "Branco" },
         { "slug": "cinza-claro", "color": "#F7F8FA", "name": "Cinza Claro" },
         { "slug": "texto",       "color": "#1A202C", "name": "Texto Principal" },
@@ -60,7 +62,7 @@
     },
     "elements": {
       "link": {
-        "color": { "text": "#1B6FAF" }
+        "color": { "text": "#006098" }
       },
       "h1": { "typography": { "fontFamily": "'Nunito', 'Segoe UI', Arial, sans-serif", "fontWeight": "800" } },
       "h2": { "typography": { "fontFamily": "'Nunito', 'Segoe UI', Arial, sans-serif", "fontWeight": "700" } },

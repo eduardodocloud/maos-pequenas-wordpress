@@ -14,16 +14,17 @@
     <div class="header-inner">
 
       <!-- Logo -->
-      <a href="<?= esc_url(home_url('/')); ?>" class="site-logo">
-        <?php if (has_custom_logo()) :
-          the_custom_logo();
-        else : ?>
-          <div class="site-logo-text">
-            <strong>Mãos Pequenas</strong>
-            <span>Lar Assistencial</span>
-          </div>
-        <?php endif; ?>
-      </a>
+      <?php if (has_custom_logo()) :
+        // the_custom_logo() já gera seu próprio <a> com classe .custom-logo-link
+        the_custom_logo();
+      else : ?>
+        <a href="<?= esc_url(home_url('/')); ?>" class="site-logo">
+          <img src="<?= esc_url(get_theme_file_uri('assets/images/logo.jpg')); ?>"
+               alt="Lar Assistencial Mãos Pequenas"
+               class="site-logo-img"
+               width="220" height="83">
+        </a>
+      <?php endif; ?>
 
       <!-- Navegação (estrutura do briefing) -->
       <nav class="main-nav" id="main-nav" aria-label="Menu principal">

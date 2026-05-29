@@ -104,7 +104,7 @@
   letter-spacing: 0.5px;
 }
 .tag-blue   { background: var(--azul-pale); color: var(--azul); }
-.tag-yellow { background: rgba(245,197,24,0.15); color: #9A6B00; }
+.tag-yellow { background: rgba(248,240,16,0.15); color: #9A6B00; }
 .tag-green  { background: #D4EDDA; color: #155724; }
 
 /* ===========================

@@ -14,22 +14,26 @@ Text Domain: maos-pequenas
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --azul:       #1B6FAF;
-  --azul-claro: #4A9FD4;
-  --azul-pale:  #EBF5FB;
-  --amarelo:    #F5C518;
-  --amarelo-d:  #E0A800;
-  --branco:     #FFFFFF;
-  --cinza-claro:#F7F8FA;
-  --cinza:      #6B7280;
-  --texto:      #1A202C;
-  --texto-med:  #4A5568;
-  --radius:     12px;
-  --shadow:     0 4px 20px rgba(27,111,175,0.12);
-  --shadow-lg:  0 8px 40px rgba(27,111,175,0.18);
-  --transition: 0.3s ease;
-  --font-main:  'Open Sans', 'Segoe UI', Arial, sans-serif;
-  --font-head:  'Nunito', 'Segoe UI', Arial, sans-serif;
+  /* ─── Paleta oficial extraída da logo ─────────────────── */
+  --azul:        #006098;  /* azul Mãos Pequenas — pixel dominante da logo */
+  --azul-escuro: #004E7C;  /* hover / variação mais escura */
+  --azul-claro:  #2F8FCB;  /* destaque / botões secundários */
+  --azul-pale:   #E6F1F8;  /* fundos suaves */
+  --amarelo:     #F8F010;  /* amarelo Mãos Pequenas — limão das estrelas */
+  --amarelo-d:   #D8D000;  /* hover do amarelo */
+  --amarelo-pale:#FFFCE0;  /* fundo suave amarelo */
+
+  --branco:      #FFFFFF;
+  --cinza-claro: #F7F8FA;
+  --cinza:       #6B7280;
+  --texto:       #1A202C;
+  --texto-med:   #4A5568;
+  --radius:      12px;
+  --shadow:      0 4px 20px rgba(0,96,152,0.12);
+  --shadow-lg:   0 8px 40px rgba(0,96,152,0.18);
+  --transition:  0.3s ease;
+  --font-main:   'Open Sans', 'Segoe UI', Arial, sans-serif;
+  --font-head:   'Nunito', 'Segoe UI', Arial, sans-serif;
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -88,7 +92,7 @@ ul { list-style: none; }
   border-color: var(--amarelo-d);
   color: var(--texto);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(245,197,24,0.4);
+  box-shadow: 0 6px 20px rgba(248,240,16,0.4);
 }
 .btn-secondary {
   background: transparent;
@@ -150,8 +154,25 @@ ul { list-style: none; }
   justify-content: space-between;
   height: 76px;
 }
-.site-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.site-logo img { height: 56px; width: auto; }
+.site-logo,
+.custom-logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.site-logo img,
+.custom-logo {
+  height: 60px !important;
+  width: auto !important;
+  max-width: 260px;
+  display: block;
+  object-fit: contain;
+}
+.site-logo-footer img {
+  height: 110px;
+  width: auto;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+/* Mantém fallback de texto caso a imagem não carregue */
 .site-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 .site-logo-text strong { font-family: var(--font-head); font-size: 1.3rem; color: var(--azul); }
 .site-logo-text span   { font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--cinza); }
@@ -200,7 +221,7 @@ ul { list-style: none; }
    HERO
 =========================== */
 .hero {
-  background: linear-gradient(135deg, #0D4E8A 0%, #1B6FAF 50%, #2E90D1 100%);
+  background: linear-gradient(135deg, #004E7C 0%, #006098 50%, #2F8FCB 100%);
   color: var(--branco);
   padding: 100px 0 80px;
   position: relative;
@@ -211,7 +232,7 @@ ul { list-style: none; }
   position: absolute;
   top: -100px; right: -100px;
   width: 500px; height: 500px;
-  background: rgba(245,197,24,0.08);
+  background: rgba(248,240,16,0.08);
   border-radius: 50%;
 }
 .hero::after {
@@ -234,8 +255,8 @@ ul { list-style: none; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(245,197,24,0.2);
-  border: 1px solid rgba(245,197,24,0.4);
+  background: rgba(248,240,16,0.2);
+  border: 1px solid rgba(248,240,16,0.4);
   color: var(--amarelo);
   padding: 8px 18px;
   border-radius: 50px;
@@ -477,7 +498,7 @@ ul { list-style: none; }
    DOAÇÃO DESTAQUE
 =========================== */
 .donation-cta {
-  background: linear-gradient(135deg, #0D4E8A 0%, #1B6FAF 100%);
+  background: linear-gradient(135deg, #004E7C 0%, #006098 100%);
   color: var(--branco);
   padding: 80px 0;
   text-align: center;
@@ -662,7 +683,7 @@ ul { list-style: none; }
 .form-group textarea:focus {
   outline: none;
   border-color: var(--azul);
-  box-shadow: 0 0 0 3px rgba(27,111,175,0.12);
+  box-shadow: 0 0 0 3px rgba(0,96,152,0.12);
 }
 .form-group textarea { height: 120px; resize: vertical; }
 .form-submit { width: 100%; padding: 16px; font-size: 1rem; margin-top: 4px; }
@@ -737,7 +758,7 @@ ul { list-style: none; }
    PÁGINAS INTERNAS
 =========================== */
 .page-hero {
-  background: linear-gradient(135deg, #0D4E8A 0%, #1B6FAF 100%);
+  background: linear-gradient(135deg, #004E7C 0%, #006098 100%);
   color: var(--branco);
   padding: 80px 0 60px;
   text-align: center;
