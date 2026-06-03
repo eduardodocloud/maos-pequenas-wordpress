@@ -7,27 +7,38 @@ require_once ABSPATH . 'wp-admin/includes/file.php';
 require_once ABSPATH . 'wp-admin/includes/media.php';
 require_once ABSPATH . 'wp-admin/includes/image.php';
 
-$docs_dir = $_SERVER['HOME'] . '/Desktop/site';
+// Mapa: caminho-absoluto|slug|título
+$home = $_SERVER['HOME'];
+$base = $home . '/Desktop/site';
+$dl   = $home . '/Downloads';
 
-// Mapa: caminho-relativo|slug|título
 $docs_map = [
-    "Estatuto Atual_Novo Endereço.pdf|estatuto-social|Estatuto Social",
-    "Ata Atual_Diretoria (2).pdf|ata-diretoria|Ata da Diretoria",
-    "Balancetes/Mãos Pequenas - Demonstrações Contábeis Completas (BP-DR-DMPL-FC-NE) 2018.pdf|balancete-2018|Demonstrações Contábeis 2018",
-    "Balancetes/Mãos Pequenas - Peças Contábeis - BP-DRE-DMPL-DFI-NE - 2017.pdf|balancete-2017|Peças Contábeis 2017",
-    "Balancetes/037 - Lar Assistencial Mãos Pequenas - Demonstrações Contábeis (Notas Explicativas) 2016.pdf|balancete-2016|Demonstrações Contábeis 2016",
-    "Balancetes/039 - Demonstrações Contabeis Completas 2015.doc|balancete-2015|Demonstrações Contábeis 2015",
-    "Balancetes/039 - Demonstrações Contábeis (BP-DR-DMPL-FC) 2014-2013.xlsx|balancete-2014|Demonstrações Contábeis 2014-2013",
-    "Balancetes/039 -Lar Mão Pequenas - Demonstracoes contabeis 2013 - 2012.pdf|balancete-2013|Demonstrações Contábeis 2013-2012",
-    "Balancetes/Lar Ass Mãos Pequenas - NOTAS EXPLICATIVAS ÀS DEMONSTRAÇÕES CONTÁBEIS EM 31-12-2012.doc|balancete-2012|Notas Explicativas 2012",
-    "Balancetes/Lar Mãos Pequenas - Demonstrações Financeiras 2012 Comparativo 2011.xlsx|balancete-2011|Demonstrações Financeiras 2012-2011",
+    // Documentos institucionais (Desktop/site)
+    "$base/Estatuto Atual_Novo Endereço.pdf|estatuto-social|Estatuto Social",
+    "$base/Ata Atual_Diretoria (2).pdf|ata-diretoria|Ata da Diretoria",
+
+    // Balancetes mais recentes 2024/2025 (Downloads)
+    "$dl/Balanço Patrimonial2025.pdf|balanco-patrimonial-2025|Balanço Patrimonial 2025",
+    "$dl/Balancete consolidado2025.pdf|balancete-consolidado-2025|Balancete Consolidado 2025",
+    "$dl/BALANÇO PATRIMONIAL2024.pdf|balanco-patrimonial-2024|Balanço Patrimonial 2024",
+    "$dl/BALANCETE DE VERIFICAÇÃO2024.pdf|balancete-verificacao-2024|Balancete de Verificação 2024",
+    "$dl/DEMONSTRAÇÃO2024.pdf|demonstracao-2024|Demonstração 2024",
+
+    // Balancetes históricos (Desktop/site/Balancetes)
+    "$base/Balancetes/Mãos Pequenas - Demonstrações Contábeis Completas (BP-DR-DMPL-FC-NE) 2018.pdf|balancete-2018|Demonstrações Contábeis 2018",
+    "$base/Balancetes/Mãos Pequenas - Peças Contábeis - BP-DRE-DMPL-DFI-NE - 2017.pdf|balancete-2017|Peças Contábeis 2017",
+    "$base/Balancetes/037 - Lar Assistencial Mãos Pequenas - Demonstrações Contábeis (Notas Explicativas) 2016.pdf|balancete-2016|Demonstrações Contábeis 2016",
+    "$base/Balancetes/039 - Demonstrações Contabeis Completas 2015.doc|balancete-2015|Demonstrações Contábeis 2015",
+    "$base/Balancetes/039 - Demonstrações Contábeis (BP-DR-DMPL-FC) 2014-2013.xlsx|balancete-2014|Demonstrações Contábeis 2014-2013",
+    "$base/Balancetes/039 -Lar Mão Pequenas - Demonstracoes contabeis 2013 - 2012.pdf|balancete-2013|Demonstrações Contábeis 2013-2012",
+    "$base/Balancetes/Lar Ass Mãos Pequenas - NOTAS EXPLICATIVAS ÀS DEMONSTRAÇÕES CONTÁBEIS EM 31-12-2012.doc|balancete-2012|Notas Explicativas 2012",
+    "$base/Balancetes/Lar Mãos Pequenas - Demonstrações Financeiras 2012 Comparativo 2011.xlsx|balancete-2011|Demonstrações Financeiras 2012-2011",
 ];
 
 echo "📎 Importando documentos de transparência...\n\n";
 $ok = 0;
 foreach ($docs_map as $entry) {
-    [$rel, $slug, $title] = explode('|', $entry);
-    $file = $docs_dir . '/' . $rel;
+    [$file, $slug, $title] = explode('|', $entry);
     if (!file_exists($file)) {
         echo "  ⚠️  $slug — arquivo não encontrado\n";
         continue;
