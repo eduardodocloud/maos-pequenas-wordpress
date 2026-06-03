@@ -1,7 +1,8 @@
 <?php get_header(); ?>
 
 <?php
-$anos_atuacao = max(20, date('Y') - 2005);
+// Fixo em 20 anos por enquanto (dado oficial do cliente, jun/2026)
+$anos_atuacao = 20;
 $doare = mp_opt('mp_doare_url', 'https://doare.org/');
 $whats_clean = preg_replace('/\D/', '', mp_opt('mp_whatsapp', '1140472289'));
 ?>
@@ -23,7 +24,7 @@ $whats_clean = preg_replace('/\D/', '', mp_opt('mp_whatsapp', '1140472289'));
  </div>
  <!-- Slide 2 -->
  <div class="hero-slide" data-slide="1">
- <div class="hero-badge">⭐ <?= $anos_atuacao; ?>anos transformando vidas</div>
+ <div class="hero-badge">⭐ <?= $anos_atuacao; ?> anos transformando vidas</div>
  <h1><?= wp_kses_post(mp_opt('mp_hero_titulo_2', 'Há 20 anos levando esperança para <span>crianças e adolescentes</span>')); ?></h1>
  <p><?= wp_kses_post(mp_opt('mp_hero_texto_2', 'O Lar Assistencial Mãos Pequenas é um espaço de acolhimento, afeto e dignidade em Diadema/SP.')); ?></p>
  <div class="hero-buttons">
@@ -107,7 +108,7 @@ $whats_clean = preg_replace('/\D/', '', mp_opt('mp_whatsapp', '1140472289'));
  <div class="container">
  <div class="text-center" style="margin-bottom:24px">
  <span class="section-label" style="color:#FFF">Nossos Números</span>
- <h2 class="section-title" style="color:#FFF">+<?= $anos_atuacao; ?>anos levando esperança</h2>
+ <h2 class="section-title" style="color:#FFF">+<?= $anos_atuacao; ?> anos levando esperança</h2>
  </div>
  <div class="impact-grid">
  <div class="impact-item">
