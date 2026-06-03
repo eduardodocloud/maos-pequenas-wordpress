@@ -150,6 +150,11 @@ $whats_clean = preg_replace('/\D/', '', mp_opt('mp_whatsapp', '1140472289'));
  <h3>Campanha de Cestas Básicas</h3>
  <p>Arrecadação contínua de alimentos não perecíveis para garantir refeições nutritivas no dia a dia do lar.</p>
  </div>
+ <div class="how-card">
+ <h3>Nota Fiscal Paulista</h3>
+ <p>Doe sem gastar nada! Indique o Lar Mãos Pequenas como entidade favorita e destine os créditos das suas compras para nossas crianças.</p>
+ <a href="<?= esc_url(home_url('/doacoes/#nota-fiscal')); ?>" style="display:inline-block;margin-top:8px;color:var(--azul);font-weight:700;font-size:0.85rem;letter-spacing:0.5px">Saiba como participar →</a>
+ </div>
  </div>
  </div>
 </section>
