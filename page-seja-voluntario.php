@@ -34,8 +34,8 @@ $tel = mp_opt('mp_tel_2', '(11) 4047-2289');
  <div class="regras-list">
  <h3>Regras para Voluntário e Visitação</h3>
  <ul>
- <li>Agendamento somente por e-mail</li>
- <li>Informar nome completo, RG e endereço de todos os visitantes</li>
+ <li>Agendamento por e-mail ou WhatsApp</li>
+ <li>Informar nome completo e quantidade de visitantes</li>
  <li>Objetivo da visita</li>
  <li>Grupo máximo de 15 pessoas (caso ultrapasse, solicitar análise prévia)</li>
  <li><strong>O berçário não é visitado</strong></li>
@@ -58,10 +58,6 @@ $tel = mp_opt('mp_tel_2', '(11) 4047-2289');
  <div class="form-field field-full">
  <label>Nome completo *</label>
  <input type="text" name="nome" required>
- </div>
- <div class="form-field">
- <label>RG</label>
- <input type="text" name="rg">
  </div>
  <div class="form-field">
  <label>Profissão</label>
@@ -141,6 +137,10 @@ $tel = mp_opt('mp_tel_2', '(11) 4047-2289');
  <?php wp_nonce_field('mp_nonce', '_mp_nonce'); ?>
  <button type="submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:24px">Enviar Inscrição</button>
  <div class="form-feedback"></div>
+ <p style="font-size:0.78rem;color:var(--texto-med);margin-top:14px;line-height:1.5">
+   🔒 Seus dados serão usados apenas para entrarmos em contato sobre voluntariado.
+   Nenhuma informação será compartilhada com terceiros (LGPD).
+ </p>
  </form>
  </div>
  </div>

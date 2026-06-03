@@ -150,11 +150,6 @@ $whats_clean = preg_replace('/\D/', '', mp_opt('mp_whatsapp', '1140472289'));
  <h3>Campanha de Cestas Básicas</h3>
  <p>Arrecadação contínua de alimentos não perecíveis para garantir refeições nutritivas no dia a dia do lar.</p>
  </div>
- <div class="how-card">
- <div class="how-icon">⭐</div>
- <h3>Campanha Thabata</h3>
- <p>Campanha especial em homenagem à Thabata. Saiba mais sobre essa história e como você pode contribuir.</p>
- </div>
  </div>
  </div>
 </section>

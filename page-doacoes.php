@@ -3,74 +3,79 @@
  * Template Name: Doações
  */
 get_header();
-$doare = mp_opt('mp_doare_url', 'https://doare.org/');
-$cnpj = mp_opt('mp_cnpj', '07.679.226/0001-00');
-$end = mp_opt('mp_endereco', 'Estrada Nova Ipê, 440 — Condomínio Praia Vermelha — Diadema/SP');
-$hora = mp_opt('mp_horario', 'Segunda à sexta-feira, das 9h às 17h');
+$cnpj  = mp_opt('mp_cnpj', '07.679.226/0001-00');
+$end   = mp_opt('mp_endereco', 'Estrada Nova Ipê, 440 — Condomínio Praia Vermelha — Diadema/SP');
+$hora  = mp_opt('mp_horario', 'Segunda à sexta-feira, das 9h às 17h');
 $whats = preg_replace('/\D/', '', mp_opt('mp_whatsapp', '1140472289'));
-$tel = mp_opt('mp_tel_2', '(11) 4047-2289');
+$tel   = mp_opt('mp_tel_2', '(11) 4047-2289');
+$nfp   = mp_opt('mp_nfp_url', ''); // URL Nota Fiscal Paulista (configurar quando receber)
 ?>
 
 <section class="page-header section">
  <div class="container text-center">
  <span class="section-label">Doações</span>
  <h1 class="section-title">Sua doação transforma vidas</h1>
- <p class="section-desc">Conheça as 3 formas de contribuir para o Lar Assistencial Mãos Pequenas.</p>
+ <p class="section-desc">Conheça as formas de contribuir para o Lar Assistencial Mãos Pequenas.</p>
  </div>
 </section>
 
-<!-- DOAÇÃO EM DINHEIRO -->
-<section class="section" id="dinheiro" style="background:var(--cinza-claro)">
+<!-- DOAÇÃO VIA PIX -->
+<section class="section" id="pix" style="background:var(--cinza-claro)">
  <div class="container">
  <div class="about-home-inner">
  <div class="about-home-content">
  <span class="section-label">Doação em Dinheiro</span>
- <h2 class="section-title">Doação única através da plataforma Doare</h2>
+ <h2 class="section-title">Faça sua doação via PIX</h2>
  <p>A manutenção das atividades do Lar Assistencial Mãos Pequenas exige recursos financeiros para que o acolhimento seja mantido da forma mais benéfica possível. Custos surgem no decorrer dos dias para atender as necessidades de <strong>saúde, alimentação, educação e bem-estar</strong> de nossos acolhidos.</p>
- <p>Por isso contamos muito com a colaboração da sociedade. Para captação de doações financeiras utilizamos a plataforma <strong>Doare</strong>, que permite doar de forma simples e segura via cartão de crédito, boleto bancário ou PayPal.</p>
+ <p>Cada contribuição, por menor que seja, faz uma grande diferença na vida das crianças e adolescentes que acolhemos.</p>
 
  <div class="donation-highlight">
  <div class="donation-highlight-text">
- <strong>Plataforma segura</strong>
- <p>A Doare é a maior plataforma de doações financeiras do Brasil, regularizada e auditada.</p>
+ <strong>Doação direta e segura</strong>
+ <p>Use nossa chave PIX para fazer sua doação na hora — sem taxas, sem intermediários. O valor cai direto na conta da instituição.</p>
  </div>
  </div>
 
- <a href="<?= esc_url($doare); ?>" target="_blank" rel="noopener" class="btn btn-primary btn-lg">❤️ Doar Agora pela Doare</a>
+ <a href="https://wa.me/55<?= $whats; ?>?text=Ol%C3%A1!+Acabei+de+fazer+uma+doa%C3%A7%C3%A3o+via+PIX+para+o+Lar+M%C3%A3os+Pequenas." target="_blank" rel="noopener" class="btn btn-outline btn-lg">Avisar pelo WhatsApp após doar</a>
  </div>
  <div class="about-home-image">
  <div class="pix-box" style="background:var(--branco);color:var(--texto);border:2px solid var(--azul-pale)">
- <span class="label" style="color:var(--azul)">Ou via PIX — CNPJ</span>
- <span class="cnpj" style="color:var(--azul)"><?= esc_html($cnpj); ?></span>
- <span style="font-size:0.85rem;color:var(--texto-med)">Lar Assistencial Mãos Pequenas<br>Utilidade Pública Municipal<?= esc_html(mp_opt('mp_util_publica','2877/09')); ?></span>
+ <span class="label" style="color:var(--azul)">Chave PIX — CNPJ</span>
+ <span class="cnpj" style="color:var(--azul);font-size:1.4rem;font-weight:700;cursor:pointer" title="Clique para copiar"><?= esc_html($cnpj); ?></span>
+ <span style="font-size:0.9rem;color:var(--texto-med);margin-top:8px;display:block">👆 Clique no CNPJ para copiar</span>
+ <span style="font-size:0.85rem;color:var(--texto-med);margin-top:14px;display:block">Lar Assistencial Mãos Pequenas<br>Utilidade Pública Municipal <?= esc_html(mp_opt('mp_util_publica','2877/09')); ?></span>
  </div>
  </div>
  </div>
  </div>
 </section>
 
-<!-- SÓCIO MANTENEDOR -->
-<section class="section" id="mantenedor">
+<!-- NOTA FISCAL PAULISTA -->
+<section class="section" id="nota-fiscal">
  <div class="container">
  <div class="text-center" style="margin-bottom:32px">
- <span class="section-label">Sócio Mantenedor</span>
- <h2 class="section-title">Realize uma contribuição mensal fixa</h2>
- <p class="section-desc" style="max-width:780px;margin:16px auto">Para que possamos dar continuidade aos trabalhos que realizamos, precisamos de recursos financeiros que possam custear despesas correntes, como aluguel, IPTU, telefone, material administrativo, contador e outras necessidades do dia a dia.</p>
+ <span class="section-label">Nota Fiscal Paulista</span>
+ <h2 class="section-title">Doe sem gastar nada</h2>
+ <p class="section-desc" style="max-width:780px;margin:16px auto">Você pode contribuir com o Lar Mãos Pequenas <strong>sem desembolsar nenhum centavo</strong> — basta indicar nossa instituição na hora de pedir Nota Fiscal Paulista.</p>
  </div>
 
  <div class="about-home-content" style="max-width:840px;margin:0 auto">
- <p>Você pode fazer uma <strong>doação mensal simbólica</strong> que será creditada em nossas contas e contribuirá na garantia do contínuo funcionamento das atividades do Projeto Lar.</p>
+ <p>O programa <strong>Nota Fiscal Paulista</strong> do governo de São Paulo permite que você destine parte dos créditos das suas compras para entidades assistenciais cadastradas. O Lar Mãos Pequenas é uma dessas entidades — basta nos indicar quando pedir nota.</p>
 
  <div class="donation-highlight">
  <div class="donation-highlight-text">
- <strong>Doação recorrente</strong>
- <p>Configure pelo Doare ou entre em contato — você escolhe o valor e pode cancelar a qualquer momento.</p>
+ <strong>Como funciona</strong>
+ <p>Toda vez que você fizer uma compra, peça a nota e indique o CPF de doação automática para o Lar Assistencial Mãos Pequenas. Os créditos gerados vêm direto para a instituição, sem custo nenhum para você.</p>
  </div>
  </div>
 
- <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px">
- <a href="<?= esc_url($doare); ?>" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Quero ser Mantenedor</a>
- <a href="https://wa.me/55<?= $whats; ?>?text=Ol%C3%A1!+Quero+me+tornar+s%C3%B3cio+mantenedor+do+Lar+M%C3%A3os+Pequenas." target="_blank" class="btn btn-outline btn-lg">Falar no WhatsApp</a>
+ <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;justify-content:center">
+ <?php if ($nfp) : ?>
+ <a href="<?= esc_url($nfp); ?>" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Cadastrar como entidade favorita</a>
+ <?php else : ?>
+ <span class="btn btn-outline btn-lg" style="opacity:0.7;cursor:default">Link em breve</span>
+ <?php endif; ?>
+ <a href="https://wa.me/55<?= $whats; ?>?text=Ol%C3%A1!+Como+fa%C3%A7o+para+destinar+minha+Nota+Fiscal+Paulista+para+o+Lar+M%C3%A3os+Pequenas%3F" target="_blank" rel="noopener" class="btn btn-outline btn-lg">Tirar dúvidas no WhatsApp</a>
  </div>
  </div>
  </div>
