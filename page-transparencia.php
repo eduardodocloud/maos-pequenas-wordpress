@@ -196,7 +196,7 @@ function mp_find_doc_url($slug) {
      <strong>Lar Assistencial Mãos Pequenas</strong>
      <p>CNPJ: <strong><?= esc_html(mp_opt('mp_cnpj','07.679.226/0001-00')); ?></strong></p>
      <p>Utilidade Pública Municipal: <strong><?= esc_html(mp_opt('mp_util_publica','2877/09')); ?></strong></p>
-     <p>Endereço: <?= esc_html(mp_opt('mp_endereco','Estrada Nova Ipê, 440 — Condomínio Praia Vermelha — Diadema/SP')); ?></p>
+     <p>Sede administrativa: Estrada Nova Ipê, 440 — Condomínio Praia Vermelha — Diadema/SP</p>
    </div>
  </div>
 

@@ -4,7 +4,7 @@
  */
 get_header();
 $cnpj  = mp_opt('mp_cnpj', '07.679.226/0001-00');
-$end   = mp_opt('mp_endereco', 'Estrada Nova Ipê, 440 — Condomínio Praia Vermelha — Diadema/SP');
+$end   = mp_opt('mp_endereco', 'Diadema/SP');
 $hora  = mp_opt('mp_horario', 'Segunda à sexta-feira, das 9h às 17h');
 $whats = preg_replace('/\D/', '', mp_opt('mp_whatsapp', '1140472289'));
 $tel   = mp_opt('mp_tel_2', '(11) 4047-2289');
@@ -173,9 +173,9 @@ $nfp   = mp_opt('mp_nfp_url', ''); // URL Nota Fiscal Paulista (configurar quand
 
  <div class="donation-highlight" style="margin-top:40px">
  <div class="donation-highlight-text">
- <strong>Entrega ou retirada</strong>
- <p>Você pode entrar em contato conosco e solicitar que <strong>retiremos as doações em seu endereço</strong>, ou então realizar a entrega em nossa sede administrativa:</p>
- <p style="margin-top:8px"><strong><?= esc_html($end); ?></strong><br><?= esc_html($hora); ?><br><?= esc_html($tel); ?></p>
+ <strong>Como combinar a entrega</strong>
+ <p>Entre em contato pelo <strong>WhatsApp</strong> ou <strong>telefone</strong> para combinarmos a forma de entrega. Em alguns casos, podemos retirar a doação no seu endereço.</p>
+ <p style="margin-top:8px"><?= esc_html($hora); ?><br><strong><?= esc_html($tel); ?></strong></p>
  </div>
  </div>
 

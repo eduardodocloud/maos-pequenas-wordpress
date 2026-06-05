@@ -89,7 +89,7 @@ function mp_customizer($wp_customize) {
         'mp_youtube'       => ['YouTube URL', ''],
         'mp_cnpj'          => ['CNPJ', '07.679.226/0001-00'],
         'mp_util_publica'  => ['Utilidade Pública Municipal', '2877/09'],
-        'mp_endereco'      => ['Endereço', 'Estrada Nova Ipê, 440 — Condomínio Praia Vermelha — Diadema/SP'],
+        'mp_endereco'      => ['Endereço', 'Diadema/SP'],
         'mp_horario'       => ['Horário de Atendimento', 'Segunda à sexta-feira, das 9h às 17h'],
         'mp_doare_url'     => ['URL Plataforma Doare', 'https://doare.org/'],
         'mp_hero_titulo_1' => ['Banner 1 — Título', 'Um pequeno gesto pode fazer uma <span>grande diferença</span>'],
